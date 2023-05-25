@@ -3,8 +3,8 @@
     <v-row justify="space-around">
       <v-card width="600">
 
-        <v-app-bar flat color="rgba(0, 0, 0, 0)" class="fondo">
-          <v-app-bar-nav-icon color="white"></v-app-bar-nav-icon>
+        <v-app-bar flat color="rgba(156, 216, 175, 256)" class="fondo">
+          
 
           <v-toolbar-title class=" text-h6 white--text pl-0">
             CREAR CENTRO
@@ -12,13 +12,11 @@
 
           <v-spacer></v-spacer>
 
-          <v-btn color="white" icon>
-            <v-icon>mdi-dots-vertical</v-icon>
-          </v-btn>
+          
         </v-app-bar>
 
 
-        <v-card-text>
+        <v-card-text class="carta">
 
           <v-form>
             <v-container>
@@ -170,6 +168,8 @@ export default {
   
 <style>
 .fondo {
-  background: linear-gradient(90deg, rgba(74, 138, 22, 0.7820378151260504) 0%, rgba(9, 121, 114, 1) 35%, rgba(168, 120, 6, 1) 58%, rgba(0, 212, 255, 1) 100%);
+  background-color: #9CD8AF;
 }
+
+
 </style>
