@@ -27,18 +27,50 @@
 
                   <v-row>
                     <v-col cols="6">
-                      <v-text-field label="Nombre del centro" prepend-icon="mdi-key"
-                        v-model="paquete.centro"></v-text-field>
+                      <v-text-field label="Codigo del centro" prepend-icon="mdi-key"
+                        v-model="paquete.codigo"></v-text-field>
                     </v-col>
                   </v-row>
                   <v-row>
                     <v-col cols="12">
-                      <v-text-field label="Regional" prepend-icon="mdi-key" v-model="paquete.regional"></v-text-field>
+                      <v-text-field label="Nombre" prepend-icon="mdi-key" v-model="paquete.nombre"></v-text-field>
                     </v-col>
                   </v-row>
+                  
                   <v-row>
-                    <v-col cols="18">
-                      <v-text-field label="Municipio" prepend-icon="mdi-key" v-model="paquete.municipio"></v-text-field>
+                       <v-col
+                        cols="6">
+                        <v-select
+                             :items="departamentos"
+                             item-text="departamento"
+                             item-value="departamento"
+                             label="Selecciones departamento"
+                             v-model="departamento"
+                              prepend-icon="map"
+                       ></v-select>
+                       </v-col>
+                       <v-col
+                        cols="6">
+                        <v-select
+                          :items="ciuda"
+                          label="Selecciones una ciudad"
+                          v-model="paquete.municipio"
+                         color = "black"
+                         item-color= "black"
+                         prepend-icon="map"
+                         ></v-select>
+                       </v-col>
+                    </v-row>
+                  <v-row>
+                    <v-col>
+                      <v-select
+                             :items="regionales"
+                             item-text="nombre"
+                             item-value="_id"
+                             label="Selecciones regional"
+                              prepend-icon="map"
+                              v-model="paquete.regional"
+                       ></v-select>
                     </v-col>
                   </v-row>
                 </v-col>
@@ -62,7 +94,10 @@
       </v-card>
     </v-row>
     <pre>
-          {{ regionales !== null ? regionales : "eorsadfsdakfshdaflkh" }}
+      
+           {{ $data }}
+      
+          
 
         </pre>
     <!-- <pre>
@@ -81,13 +116,16 @@ export default {
   },
   data() {
     return {
-      regionales: null,
-
+     
+      departamento:null,
       paquete: {
+        codigo: null,
         nombre: null,
         regional: null,
         municipio: null
+        
       },
+      regionales: null,
       departamentos: colombia,
     }
   },
@@ -106,20 +144,10 @@ export default {
           // always executed
         });
     },
-
-    async obtenerRegionales() {
-      await axios.get("http://10.187.145.190:3000/regional")
-        .then(function (response) {
-          console.log(response);
-
-          this.regionales = response;
-        }).finally(function (response) {
-          this.regionales = response;
-        })
-    }
   },
-  mounted() {
-    this.obtenerRegionales();
+  async mounted() {
+    const response = await axios.get("http://10.187.145.190:3000/regional");
+    this.regionales = response.data;
   },
 
   computed: {
@@ -127,7 +155,7 @@ export default {
     ciuda() {
       var ciudades = null
       for (var pos in this.departamentos) {
-        if (this.departamentos[pos].departamento == this.paquete.departamento) {
+        if (this.departamentos[pos].departamento == this.departamento) {
           ciudades = this.departamentos[pos].ciudades;
         }
       }
