@@ -88,16 +88,11 @@ import vuescroll from "vuescroll";
                         icon: 'mdi mdi-home-variant'
                     },
                     {
-                        href: '/charts',
-                        title: 'Charts',
-                        icon: 'fa fa-chart-area',
-                        child: [
-                            {
-                                href: '/charts/sublink',
-                                title: 'Sub Link'
-                            }
-                        ]
-                    }], 
+                        href: '/dashboard/centro',
+                        title: 'Centro',
+                        icon: 'mdi mdi-home-variant'
+                    }
+                    ], 
     
     
     }),
